@@ -23,7 +23,6 @@
 \linespread{1.2}
 
 
-\makeatletter
 \newcommand*\thesubbbsection{%
   \ifnum\c@subsection=0
     \thesection%
@@ -31,10 +30,16 @@
     \thesubsection%
   \fi
 }
-\makeatother
 
 \setlength\parindent{2em}
+
+\ExplSyntaxOn
 \newcounter{para}[subsubsection]
-\newcommand\para{%
-  \par\noindent\hspace{\parindent}\refstepcounter{para}{\bfseries(\thesubbbsection.\thepara)}\space\space%
+\NewDocumentCommand\para{}{
+  \par\noindent
+  \hspace{\parindent}
+  \refstepcounter{para}
+  {\bfseries(\thesubbbsection.\thepara)}
+  \space\space
 }
+\ExplSyntaxOff

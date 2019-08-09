@@ -1,0 +1,25 @@
+\RequirePackage[natbib=true,maxnames=1000]{biblatex}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=shorthand, null]
+      \step[fieldset=isbn, null]
+      \step[fieldset=pages, null]
+    }
+  }
+}
+
+\AtEveryBibitem{%
+  \ifentrytype{online}{%
+    \iffieldequalstr{eprinttype}{arXiv}{%
+      \clearfield{url}%
+    }{}%
+  }{}%
+  \iffieldundef{doi}{}{%
+    \clearfield{url}%
+  }%
+}
+
+\RequirePackage{hyperref}
+\hypersetup{colorlinks,citecolor=gray}
