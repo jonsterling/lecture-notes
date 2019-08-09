@@ -1,0 +1,46 @@
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+\usetikzlibrary{matrix,arrows}
+\usetikzlibrary{fit,positioning,calc}
+\RequirePackage{tikz-cd}
+
+\tikzset{
+  desc/.style={sloped, fill=white,inner sep=2pt},
+  upright desc/.style={fill=white,inner sep=2pt},
+  pullback/.style = {
+    append after command={
+      \pgfextra{
+        \draw ($(\tikzlastnode) + (.2cm,-.5cm)$) -- ++(0.3cm,0) -- ++(0,0.3cm);
+      }
+    }
+  },
+  inline/.style = {
+    baseline=-\the\dimexpr\fontdimen22\textfont2\relax
+  },
+  between/.style args={#1 and #2}{
+    at = ($(#1)!0.5!(#2)$)
+  }
+}
+
+\tikzstyle{inline text}=[text height=1.5ex, text depth=0.25ex, yshift=0.5mm]
+
+\newlength{\dontworryaboutit}
+
+% Draw a morphism inline, with dynamically sized arrow
+\NewDocumentCommand\Mor{D||{->} o m m}{%
+  \tikz[commutative diagrams/every diagram, commutative diagrams/cramped, baseline]{%
+    \IfValueTF{#2}{%
+      \settowidth{\dontworryaboutit}{\ensuremath{\scriptstyle #2}}
+      \pgfmathsetmacro\len{max(width("$xxx$"),7pt+\dontworryaboutit)}
+
+      \node (X) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] {\ensuremath{#3}\hspace*{.5ex}};
+      \node (Y) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] [right = \len pt of X] {\hspace*{.5ex}\ensuremath{#4}};
+      \path[#1] (X.east |- 1:3) edge node [above,xshift=-.5pt,yshift=-.1ex] {\smash{\ensuremath{\scriptstyle #2}}} (Y.west |- 1:3);
+    }{%
+      \node (X) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] {\ensuremath{#3}\hspace*{.5ex}};
+      \node (Y) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] [right = 3ex of X] {\hspace*{.5ex}\ensuremath{#4}};
+      \path[#1] (X) edge node {} (Y);
+    }%
+  }%
+}
+
