@@ -1,47 +1,42 @@
-\documentclass{amsart}
-
+\documentclass[article,9pt,oneside]{memoir}
 \usepackage{jon-thm}
-\usepackage{fourier}
-\usepackage{tgschola}
 \usepackage{xparse}
 \usepackage{jon-tikz}
+\usepackage{jon-memoir}
 
 \DeclareMathOperator\colim{colim}
 % \DeclareMathOperator\lim{lim}
 
+
+
 \title{The theory of logoi (M.\ Anel)}
 \author{Notes by Jon Sterling}
+
 \begin{document}
 \maketitle
-\tableofcontents
+\tableofcontents*
 
+\bigskip
+
+\para
 In these notes, everything is implicitly $\infty$-categorical; 1-categories
 are explicitly marked.
 
-\section{The topo-logie duality}
+\para
 A topos is a space defined by a \emph{logos of sheaves}; a logos is an algebraic structure on the category of sheaves on a space.
-
-
-\section{Settling size issues}
-The dichotomy between sets and classes is not enough to handle category theory.
 
 
 \NewDocumentCommand\SET{}{\mathbf{Set}}
 
-\begin{definition}
-
-  An inaccessible cardinal is a cardinal $\alpha$ such that $\SET_{<\alpha}$ is
-  stable under dependent product and sum. We will use the terms atomic, finite
-  (cat), small (Cat), normal (CAT), large for strictly increasing scales.
-
-\end{definition}
-
-\begin{example}
-  The category of small categories is a normal category.
-\end{example}
+\para The dichotomy between sets and classes is not enough to handle category
+theory.  An inaccessible cardinal is a cardinal $\alpha$ such that
+$\SET_{<\alpha}$ is stable under dependent product and sum. We will use the
+terms atomic (subsingleton), finite, small, normal, large for several strictly
+increasing scales of inaccessible cardinal.  The category of small categories
+is a normal category.
 
 
-\section{Cocompletion}
+\section{Free cocompletion}
 \NewDocumentCommand\CC{}{\mathbb{C}}
 \NewDocumentCommand\Psh{m}{\mathbf{P}(#1)}
 \NewDocumentCommand\BigPsh{m}{\overline{\mathbf{P}}(#1)}
@@ -55,75 +50,34 @@ The dichotomy between sets and classes is not enough to handle category theory.
 \NewDocumentCommand\Pres{}{\mathbf{Pres}}
 \NewDocumentCommand\Loc{mm}{\mathbf{L}(#1,#2)}
 
-\begin{definition}
-  A category $C$ is \emph{cocomplete} if for any small category $K$, the
-  functor of constant diagrams $\Mor{C}{C^K}$ has a left adjoint.
-\end{definition}
-
+\para Let a category $C$ be called \emph{cocomplete} if for any small category $K$, the
+functor of constant diagrams $\Mor{C}{C^K}$ has a left adjoint.
+%
 A functor $\Mor{C}{D}$ between cocomplete functors should be
 \emph{cocontinuous}; this gives a category of cocomplete categories.
 %
 The forgetful functor from cocomplete categories to complete categories has a
 left adjoint (Lurie). This is the \emph{free cocompletion}.
 
-If $C$ is small, the $\Psh{C} = \Hom{\OpCat{C}}{\Sp}$ is a category. If $C$ is
-normal, then we take presheaves $\BigPsh{C}$ into $\overline{\Sp}$ and take a subcategory;
-we take the smallest subcategory of this big presheaf category which is closed
-under small colimits.
+\para If $C$ is small, the $\Psh{C} = \Hom{\OpCat{C}}{\Sp}$ is a category. If
+$C$ is normal, then we take presheaves $\BigPsh{C}$ into $\overline{\Sp}$ and
+take the smallest subcategory of this big presheaf category which is closed
+under small colimits. This can be obtained from a transfinite iteration.
 
-\begin{definition}
-  $C$ is \emph{presentable} if there exists a small diagram $\Mor{K}{C}$ and a
-  small diagram $W\to\Psh{K}^{\to}$, such that $\Loc{\Psh{K}}{W}\simeq C$; in
-  other words, $C$ is the localization of a presheaf category at some class of
-  maps.
-\end{definition}
-
-\begin{definition}
-  If $C:\CAT_\alpha$, $X:C$ is \emph{small} if for all filtered
+  An object $X:C$ is \emph{small} if for all filtered
   $\Mor[Y]{K}{C}$, we have $\Hom{X}{\colim_k Y_k} = \colim_k\Hom{X}{Y_k}$
-\end{definition}
 
-\begin{proposition}
-  A cocomplete category is small iff it is presentable.
-\end{proposition}
+\para $C$ is \emph{presentable} if there exists a small diagram $\Mor{K}{C}$
+and a small diagram $W\to\Psh{K}^{\to}$, such that $\Loc{\Psh{K}}{W}\simeq C$;
+in other words, $C$ is the localization of a presheaf category at some class of
+maps.
+%
+ A cocomplete category is small iff it is presentable; this statement must be
+ verified within a specific \emph{model} of $\infty$-categories, such as
+ quasicategories.
 
 \NewDocumentCommand\UU{}{\mathbb{U}}
 \NewDocumentCommand\U{}{\mathrm{U}}
-
-\section{Logos}
-
-Assume that $C$ is a category with finite limits (a \emph{lex category}).
-
-\begin{definition}
-
-  A \emph{family} in $C$ parameterized by $B:C$ is a map $\Mor[p]{E}{B}$. A
-  morphism of families over the same base is a commuting triangle. The category
-  of such things is the slice $C/B$.
-%
-  The reindexing of a family $\Mor[p]{E}{B}$ along an arbitrary map
-  $\Mor{B'}{B}$ is simply the fiber product. From this we construct the functor
-  $\Mor[\UU]{\OpCat{C}}{\CAT}$ which takes an object to its slice, and a morphism to
-  the fiber product. We call $\UU$ the \emph{universe} of $\CC$.
-
-\end{definition}
-
-\begin{remark}
-  In 1-category theory, $\UU$ would be a pseudofunctor into a bicategory.
-\end{remark}
-
-\begin{remark}
-  The functor $\UU$ gives the fibers of the codomain fibration.
-\end{remark}
-
-We define $\U$ as the groupoid core of $\UU$: it has the same objects as $\UU$
-but only the invertible arrows. This universe in the sense of type theory; but
-neither is actually an object of $C$; they are structures \emph{over} $C$.
-
-Suppose we have a small diagram $\Mor[X]{I}{C}$ and the colimit $X_\infty =
-\colim_i X_i$; what if we want to describe a family over the colimit, i.e.\
-$\Mor{E}{X_\infty}$? This is the topic of \emph{descent}.
-
-
 \DeclareFontFamily{U}{min}{}
 \DeclareFontShape{U}{min}{m}{n}{<-> dmjhira}{}
 \NewDocumentCommand{\hirayo}{}{\text{\usefont{U}{min}{m}{n}\symbol{'110}}}
@@ -138,14 +92,39 @@ $\Mor{E}{X_\infty}$? This is the topic of \emph{descent}.
   }%
 }
 
-Because groupoids are certain categories, we obtain a ``Yoneda'' embedding
-$\Mor[\Yo]{C}{\Hom{\OpCat{C}}{\CAT}}$. The Yoneda lemma says that morphisms
-$\Mor[\phi]{\Yo{B}}{\UU}$ are the ``same'' as families $\overline{\phi}\in
-\UU(B)=C/B$. $\UU$ classifies families and all morphisms (not only isomorphisms
-as $\U$, or only monos as $\Omega$).
 
-\section{Descent}
+\section{Logos and descent}
 
+Assume that $C$ is a category with finite limits (a \emph{lex category}).
+
+\para A \emph{family} in $C$ parameterized by $B:C$ is a map $\Mor[p]{E}{B}$. A
+morphism of families over the same base is a commuting triangle. The category
+of such things is the slice $C/B$.
+%
+The reindexing of a family $\Mor[p]{E}{B}$ along an arbitrary map $\Mor{B'}{B}$
+is simply the fiber product. From this we construct the functor
+$\Mor[\UU]{\OpCat{C}}{\CAT}$ which takes an object to its slice, and a morphism
+to the fiber product. We call $\UU$ the \emph{universe} of $\CC$; this functor
+gives the fibers of the codomain fibration. In 1-category theory, $\UU$ would
+be a pseudofunctor into a bicategory.
+
+\para
+We define $\U$ as the groupoid core of $\UU$: it has the same objects as $\UU$
+but only the invertible arrows. This universe in the sense of type theory; but
+neither is actually an object of $C$; they are structures \emph{over} $C$.
+%
+Suppose we have a small diagram $\Mor[X]{I}{C}$ and the colimit $X_\infty =
+\colim_i X_i$; what if we want to describe a family over the colimit, i.e.\
+$\Mor{E}{X_\infty}$? This is the topic of \emph{descent}.
+
+\para We obtain a ``Yoneda'' embedding $\Mor[\Yo]{C}{\Hom{\OpCat{C}}{\CAT}}$,
+factoring through actual Yoneda embedding and the inclusion of groupoids into
+categories. The Yoneda lemma says that morphisms $\Mor[\phi]{\Yo{B}}{\UU}$ are
+the ``same'' as families $\overline{\phi}\in \UU(B)=C/B$. $\UU$ classifies
+families and all morphisms (not only isomorphisms as $\U$, or only monos as
+$\Omega$).
+
+\para
 Coming back to descent, we can say that families $\Mor{E}{X_\infty}$ are the
 same as maps $\Mor{\Yo{X_\infty}}{\UU}$; by reindexing, we obtain maps
 $\Mor{X_k}{\UU}$ for each $k:K$. Going the other direction, can we start from
@@ -159,9 +138,9 @@ We want a unique lifting condition: if we define a family out of the
 $\Psh{C}$-colimit, can we get a unique map out of the Yoneda embedding of the
 $C$-colimit? In other words, can $\UU$ distinguish between the colimit and the
 Yoneda embedding of the colimit? This is descent. Phrasing this more precisely, we want
-\[
+$
   \Mor{\Hom{\Yo{\colim X}}{\UU}}{\Hom{\colim \Yo{X}}{\UU}}
-\]
+$
 to be an equivalence of categories.
 
 We can pull the colimit out of the hom as a limit, and then this equivalence is
@@ -170,19 +149,22 @@ calculated to the more familiar descent condition $\lim_i\Hom{\Yo{X_i}}{\UU}
 C/{\colim_i X_i}$. There is an obvious adjunction here, given by reindexing and
 colimit. \emph{Descent says that this adjunction is an equivalence.}
 
-\subsection{2 conditions}
 
+\subsection{Two conditions for descent}
+\para
 Start with $\Mor{E}{X_\infty}$ and then pull it back to get the fiber product
 $E\times_{X_\infty} X_j$ and take the colimit; that $E=\colim_j
 E\times_{X_\infty} X_j$ is called the \emph{universality of colimits}. This is
 satisfied by any cocomplete, locally Cartesian closed category.
 
+\para
 The hard direction is when you start from a family of maps $\Mor{E_i}{X_i}$,
 take the colimit, and then pull it back. We want $(\colim_i
 E_i)\times_{X_\infty} E_j = E_j$ for each $j$; Mathieu calls this condition
 \emph{effectivity}, by analogy with the effectivity of equivalence relations in
 classical topos theory.
 
+\para
 $n$-categories do not have descent; $\infty$-categories can have descent.
 
 \end{document}

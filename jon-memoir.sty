@@ -1,0 +1,40 @@
+\RequirePackage{amsmath,amsthm,amssymb}
+\RequirePackage{xparse}
+\RequirePackage[activate={true,nocompatibility}]{microtype}
+\RequirePackage{fouriernc}
+\RequirePackage[T1]{fontenc}
+\usepackage[cal=boondoxo]{mathalfa}
+
+
+\counterwithout{section}{chapter}
+\setsecnumdepth{subsection}
+\setsecnumformat{\csname the#1\endcsname.\ \ }
+
+\setsecheadstyle{\bfseries}
+\setsubsecheadstyle{\bfseries}
+\setsubsubsecheadstyle{\bfseries}
+\setparaheadstyle{\bfseries}
+\setsubparaheadstyle{\bfseries}
+
+
+\pretitle{\begin{center}\LARGE\bfseries\MakeTextUppercase}
+\posttitle{\par\end{center}\vskip 0.5em}
+
+\linespread{1.2}
+
+
+\makeatletter
+\newcommand*\thesubbbsection{%
+  \ifnum\c@subsection=0
+    \thesection%
+  \else
+    \thesubsection%
+  \fi
+}
+\makeatother
+
+\setlength\parindent{2em}
+\newcounter{para}[subsubsection]
+\newcommand\para{%
+  \par\noindent\hspace{\parindent}\refstepcounter{para}{\bfseries(\thesubbbsection.\thepara)}\space\space%
+}
