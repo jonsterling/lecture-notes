@@ -7,6 +7,7 @@
 \usepackage{jon-tikz}
 
 \DeclareMathOperator\colim{colim}
+% \DeclareMathOperator\lim{lim}
 
 \title{The theory of logoi}
 \author{Mathieu Anel (notes by Jon Sterling)}
@@ -155,6 +156,17 @@ not representable.
 We want a unique lifting condition: if we define a family out of the
 $\Psh{C}$-colimit, can we get a unique map out of the Yoneda embedding of the
 $C$-colimit? In other words, can $\UU$ distinguish between the colimit and the
-Yoneda embedding of the colimit? This is descent.
+Yoneda embedding of the colimit? This is descent. Phrasing this more precisely, we want
+\[
+  \Mor{\Hom{\Yo{\colim X}}{\UU}}{\Hom{\colim \Yo{X}}{\UU}}
+\]
+to be an equivalence of categories. We can pull the colimit out of the hom as a limit, and
+then this equivalence is calculated to the more familiar descent condition
+$\lim_i\Hom{\Yo{X_i}}{\UU} \simeq \Hom{\Yo{\colim_i{X_i}}}{\UU}$, i.e.\ $\lim_i{(C/X_i)}
+\simeq C/{\colim_i X_i}$. There is an obvious adjunction here, given by
+reindexing and colimit. \emph{Descent says that this adjunction is an
+equivalence.}
+
+
 
 \end{document}
