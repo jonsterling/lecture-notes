@@ -1,7 +1,7 @@
 \documentclass{jon-notes}
 
 \DeclareMathOperator\colim{colim}
-\NewDocumentCommand\SET{}{\mathbf{Set}}
+\NewDocumentCommand\Set{}{\mathbf{Set}}
 \NewDocumentCommand\CC{}{\mathbb{C}}
 \NewDocumentCommand\Psh{m}{\mathbf{P}(#1)}
 \NewDocumentCommand\BigPsh{m}{\overline{\mathbf{P}}(#1)}
@@ -41,9 +41,10 @@
 
 \begin{abstract}
 
-  These notes were prepared from a lecture of Mathieu Anel at HoTT 2019 Summer
-  School~\citep{anel:2019:hott}; all mistakes are my own. See
-  \citet{anel-joyal:2019,anel:2019:hottest} for more detailed material on this topic.
+  These notes were prepared from a course given by Mathieu Anel at HoTT 2019
+  Summer School~\citep{anel:2019:hott}; all mistakes are my own. See
+  \citet{anel-joyal:2019,anel:2019:hottest} for more detailed material on this
+  topic.
 
 \end{abstract}
 
@@ -51,13 +52,15 @@
 In these notes, everything is implicitly $\infty$-categorical; 1-categories
 are explicitly marked.
 
+\section{Course 2: the theory of logoi}
+
 \para
 A topos is a space defined by a \emph{logos of sheaves}; a logos is an algebraic structure on the category of sheaves on a space.
 
 
 \para The dichotomy between sets and classes is not enough to handle category
 theory.  An inaccessible cardinal is a cardinal $\alpha$ such that
-$\SET_{<\alpha}$ is stable under dependent product and sum. We will use the
+$\Set_{<\alpha}$ is stable under dependent product and sum. We will use the
 terms atomic (subsingleton), finite, small, normal, large for several strictly
 increasing scales of inaccessible cardinal.  The category of small categories
 is a normal category.
@@ -66,7 +69,7 @@ We will write $\Sp$ for the normal $\infty$-category of small spaces, and
 $\overline{\Sp}$ for the large $\infty$-category of normal spaces.
 
 
-\section{Free cocompletion}
+\subsection{Free cocompletion}
 
 \para Let a category $C$ be called \emph{cocomplete} if for any small category $K$, the
 functor of constant diagrams $\Mor{C}{C^K}$ has a left adjoint.
@@ -96,7 +99,7 @@ maps.
 
 
 
-\section{Logos and descent}
+\subsection{Logos and descent}
 
 Assume that $C$ is a category with finite limits (a \emph{lex category}).
 
@@ -153,22 +156,69 @@ C/{\colim_i X_i}$. There is an obvious adjunction here, given by reindexing and
 colimit. \emph{Descent says that this adjunction is an equivalence.}
 
 
-\subsection{Two conditions for descent}
+\subsubsection{Two conditions for descent}
 \para
 Start with $\Mor{E}{X_\infty}$ and then pull it back to get the fiber product
 $E\times_{X_\infty} X_j$ and take the colimit; that $E=\colim_j
-E\times_{X_\infty} X_j$ is called the \emph{universality of colimits}. This is
+(E\times_{X_\infty} X_j)$ is called the \emph{universality of colimits}. This is
 satisfied by any cocomplete, locally Cartesian closed category.
 
-\para
-The hard direction is when you start from a family of maps $\Mor{E_i}{X_i}$,
+\para\label{para:effectivity}
+The hard direction is when you start from a family of diagrams $\Mor{E_i}{X_i}$,
 take the colimit, and then pull it back. We want $(\colim_i
 E_i)\times_{X_\infty} E_j = E_j$ for each $j$; Mathieu calls this condition
 \emph{effectivity}, by analogy with the effectivity of equivalence relations in
 classical topos theory.
 
 \para
-$n$-categories do not have descent; $\infty$-categories can have descent.
+non-trivial $n$-categories do not have descent; $\infty$-categories can have descent.
+
+\section{Course 3: features of logoi}
+
+We begin by reviewing some counterexamples to descent.
+% \subsection{Counterexamples to descent}
+
+\para In $\Set$ the colimits are universal, but effectivity of colimits fails.
+He gives the counterexample with $S^0=2$:
+\[
+  \begin{tikzpicture}[on grid,node distance=2cm]
+    \node (S01) {$S^0$};
+    \node (S0S0) [right = of S01] {$S^0\times S^0$};
+    \node (S02) [right = of S0S0] {$S^0$};
+    \node (11) [below = of S01] {$1$};
+    \node (S03) [below = of S0S0] {$S^0$};
+    \node (12) [below = of S02] {$1$};
+    \path[->] (S01) edge (11);
+    \path[->] (S02) edge (12);
+    \path[->] (S03) edge (11);
+    \path[->] (S03) edge (12);
+    \path[->] (S0S0) edge (S01);
+    \path[->] (S0S0) edge (S02);
+    \path[->] (S0S0) edge node [upright desc] {$m$} (S03);
+  \end{tikzpicture}
+\]
+
+Note that the colimit of the spans upstairs and downstairs is just $1$, but if
+you take the pullbacks described in \ref{para:effectivity}, one does not obtain
+the desired fibers. For instance:
+
+\[
+  \begin{tikzpicture}[on grid,node distance=2cm]
+    \node [pullback] (1) {$1\not= S^0$};
+    \node (1') [below = of 1] {$1$};
+    \node (colim) [right = of 1] {$Y_\infty$};
+    \node (colim') [right = of 1'] {$X_\infty$};
+    \path[->] (1) edge (1');
+    \path[->] (1) edge (colim);
+    \path[->] (1') edge (colim');
+    \path[->] (colim) edge (colim');
+  \end{tikzpicture}
+\]
+
+\para In 1-$\mathbf{Gpd}$, you get an analogous counterexample from $S^1$.
+
+\para A consequence of descent in $\infty$-groupoids is that a family of spaces
+$\Sp/BG$ is the same as a functor $\Sp^{BG}$.
 
 \nocite{lurie:2009,hottbook}
 \printbibliography

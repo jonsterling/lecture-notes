@@ -42,17 +42,17 @@
   \fi
 }
 
-\setlength\parindent{2em}
+\setlength\parindent{1.5em}
 
 \ExplSyntaxOn
 \newcounter{para}[subsubsection]
-\renewcommand\thepara{\thesubbbsection.\arabic{para}}
+\renewcommand\thepara{{\bfseries(\thesubbbsection.\arabic{para})}}
 
 \NewDocumentCommand\para{}{
   \par\noindent
   \hspace{\parindent}
   \refstepcounter{para}
-  {\bfseries(\thepara)}
+  \thepara
   \space\space
 }
 \ExplSyntaxOff
