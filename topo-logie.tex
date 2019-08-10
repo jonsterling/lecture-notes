@@ -207,8 +207,8 @@ the desired fibers. For instance:
   \begin{tikzpicture}[on grid,node distance=2cm]
     \node [pullback] (1) {$1\not= S^0$};
     \node (1') [below = of 1] {$1$};
-    \node (colim) [right = of 1] {$Y_\infty$};
-    \node (colim') [right = of 1'] {$X_\infty$};
+    \node (colim) [right = of 1] {$Y_\infty=1$};
+    \node (colim') [right = of 1'] {$X_\infty=1$};
     \path[->] (1) edge (1');
     \path[->] (1) edge (colim);
     \path[->] (1') edge (colim');
@@ -266,7 +266,9 @@ Let the \emph{enveloping logos} $\Sp\langle T\rangle =
 of functors $\Hom{\OpCat{\mathcal{O}(X)}}{\Set}$ which satisfy the sheaf
 condition for the canonical topology. This generalizes to $\infty$-logoi in a
 straightforward way, where the sheaf condition is strengthened to consider not
-just a couple levels of overlap, but infinitely many.
+just a couple levels of overlap, but infinitely many. This $\infty$-sheaf
+condition restricts to the finite-dimensional versions when the objects
+involved are truncated.
 
 
 \nocite{lurie:2009,hottbook}
