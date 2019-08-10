@@ -88,7 +88,7 @@ under small colimits. This can be obtained from a transfinite iteration.
   An object $X:C$ is \emph{small} if for all filtered
   $\Mor[Y]{K}{C}$, we have $\Hom{X}{\colim_k Y_k} = \colim_k\Hom{X}{Y_k}$
 
-\para $C$ is \emph{presentable} if there exists a small diagram $\Mor{K}{C}$
+\para\label{para:presentability} $C$ is \emph{presentable} if there exists a small diagram $\Mor{K}{C}$
 and a small diagram $W\to\Psh{K}^{\to}$, such that $\Loc{\Psh{K}}{W}\simeq C$;
 in other words, $C$ is the localization of a presheaf category at some class of
 maps.
@@ -216,6 +216,34 @@ the desired fibers. For instance:
 \]
 
 \para In 1-$\mathbf{Gpd}$, you get an analogous counterexample from $S^1$.
+
+
+\NewDocumentCommand\LOGOS{}{\mathbf{LOGOS}}
+\NewDocumentCommand\Logos{}{\mathbf{Logos}}
+
+\para A cocomplete lex category is called a \emph{logos}; these are arranged
+into a category whose morphisms are cocontinuous lex functors. We will write
+$\LOGOS$ for the category of logoi. There are forgetful functors to cocomplete
+cateogires, lex categories, and categories.
+
+\para The \emph{presentable logoi} are the logoi whose underlying cocomplete
+categories are presentable in the sense of \ref{para:presentability}; the
+category of such presentable logoi is written $\Logos$.
+
+
+\para An object of $\Logos$ is an $\infty$-topos in the sense of \citet{lurie:2009}.
+
+\para A general logos need not be locally Cartesian closed, and morphisms $f^*$
+between logoi need not have right adjoints. This is the price to pay for the
+category $\LOGOS$ to be nice.
+
+\para (Anel-Lejay) The following are equivalent:
+\begin{enumerate}
+  \item $C$ is a logos
+  \item The canonical cocontinuous functor $\Mor{\Psh{C}}{C}$ is left exact. (Analogous to pre-topoi.)
+  \item The left Kan extension of every lex diagram $\Mor{D}{C}$ along $\Mor{D}{\Psh{D}}$ is lex.
+  \item Giraud axioms: like for $\infty$-topoi, removing presentability.
+\end{enumerate}
 
 \nocite{lurie:2009,hottbook}
 \printbibliography

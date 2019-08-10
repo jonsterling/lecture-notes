@@ -42,7 +42,7 @@
   \fi
 }
 
-\setlength\parindent{1.5em}
+%\setlength\parindent{1.5em}
 
 \ExplSyntaxOn
 \newcounter{para}[subsubsection]
@@ -64,3 +64,6 @@
 \definecolor{RegalBlue}{RGB}{3,69,117}
 \definecolor{RedDevil}{RGB}{134,1,17}
 \definecolor{Revolutionary}{RGB}{150,40,16}
+
+
+\tightlists
