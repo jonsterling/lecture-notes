@@ -1,9 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{jon-notes}[Jon's Notes class]
+
+\LoadClass[article,9pt,oneside]{memoir}
+
 \RequirePackage{amsmath,amsthm,amssymb}
 \RequirePackage{xparse}
 \RequirePackage[activate={true,nocompatibility}]{microtype}
 \RequirePackage{fouriernc}
 \RequirePackage[T1]{fontenc}
-\usepackage[cal=boondoxo]{mathalfa}
+\RequirePackage[cal=boondoxo]{mathalfa}
+\RequirePackage{inconsolata}
+
+\RequirePackage{jon-thm}
+\RequirePackage{jon-tikz}
+\RequirePackage{jon-biblatex}
+\RequirePackage{cleveref}
 
 
 \counterwithout{section}{chapter}
@@ -35,11 +46,21 @@
 
 \ExplSyntaxOn
 \newcounter{para}[subsubsection]
+\renewcommand\thepara{\thesubbbsection.\arabic{para}}
+
 \NewDocumentCommand\para{}{
   \par\noindent
   \hspace{\parindent}
   \refstepcounter{para}
-  {\bfseries(\thesubbbsection.\thepara)}
+  {\bfseries(\thepara)}
   \space\space
 }
 \ExplSyntaxOff
+
+
+
+
+\definecolor{Matterhorn}{RGB}{77,77,77}
+\definecolor{RegalBlue}{RGB}{3,69,117}
+\definecolor{RedDevil}{RGB}{134,1,17}
+\definecolor{Revolutionary}{RGB}{150,40,16}

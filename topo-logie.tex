@@ -1,9 +1,4 @@
-\documentclass[article,9pt,oneside]{memoir}
-\usepackage{jon-thm}
-\usepackage{xparse}
-\usepackage{jon-tikz}
-\usepackage{jon-memoir}
-\usepackage{jon-biblatex}
+\documentclass{jon-notes}
 
 \DeclareMathOperator\colim{colim}
 \NewDocumentCommand\SET{}{\mathbf{Set}}
@@ -45,9 +40,11 @@
 \maketitle
 
 \begin{abstract}
-These notes were prepared by Jon Sterling from a lecture of Mathieu Anel at
-Homotopy Type Theory 2019; all mistakes are my own. See \citet{anel-joyal:2019}
-for more detailed material on this topic.
+
+  These notes were prepared from a lecture of Mathieu Anel at HoTT 2019 Summer
+  School~\citep{anel:2019:hott}; all mistakes are my own. See
+  \citet{anel-joyal:2019,anel:2019:hottest} for more detailed material on this topic.
+
 \end{abstract}
 
 \para
@@ -65,6 +62,9 @@ terms atomic (subsingleton), finite, small, normal, large for several strictly
 increasing scales of inaccessible cardinal.  The category of small categories
 is a normal category.
 
+We will write $\Sp$ for the normal $\infty$-category of small spaces, and
+$\overline{\Sp}$ for the large $\infty$-category of normal spaces.
+
 
 \section{Free cocompletion}
 
@@ -79,7 +79,7 @@ left adjoint (Lurie). This is the \emph{free cocompletion}.
 
 \para If $C$ is small, the $\Psh{C} = \Hom{\OpCat{C}}{\Sp}$ is a category. If
 $C$ is normal, then we take presheaves $\BigPsh{C}$ into $\overline{\Sp}$ and
-take the smallest subcategory of this big presheaf category which is closed
+take the smallest subcategory of this large presheaf category which is closed
 under small colimits. This can be obtained from a transfinite iteration.
 
   An object $X:C$ is \emph{small} if for all filtered
@@ -170,6 +170,7 @@ classical topos theory.
 \para
 $n$-categories do not have descent; $\infty$-categories can have descent.
 
+\nocite{lurie:2009,hottbook}
 \printbibliography
 
 \end{document}
