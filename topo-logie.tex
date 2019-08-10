@@ -4,6 +4,7 @@
 \NewDocumentCommand\Set{}{\mathbf{Set}}
 \NewDocumentCommand\CC{}{\mathbb{C}}
 \NewDocumentCommand\Psh{m}{\mathbf{P}(#1)}
+\NewDocumentCommand\Sh{m}{\mathbf{Sh}(#1)}
 \NewDocumentCommand\BigPsh{m}{\overline{\mathbf{P}}(#1)}
 \NewDocumentCommand\Sp{}{\mathcal{S}}
 \NewDocumentCommand\Hom{mm}{[#1,#2]}
@@ -250,6 +251,23 @@ finitely generated commutative rings. Grothendieck made general commutative
 rings the main object of study rather than the finitely generated ones, and
 Mathieu advocates that we do the same in topos theory; the category of general
 logoi is nicer than the category of presentable logoi.
+
+\subsection{Other examples of logoi}
+
+\para The free logos on a category: one takes $C$ to $\Sp[C] =
+\Psh{C^{\mathit{lex}}}$. In particular, the free logos on one generator $S[X]$
+is $\Hom{\mathbf{Fin}}{\Sp}$.
+
+\para If $T$ is a Lawvere theory, then it is a category with finite products.
+Let the \emph{enveloping logos} $\Sp\langle T\rangle =
+\Psh{T^{\mathit{lex}/\times}}$. This logos classifies models of the theory $T$.
+
+\para $\infty$-sheaves on a locale $X$; we can construct a 1-logos $\Sh{X}$ out
+of functors $\Hom{\OpCat{\mathcal{O}(X)}}{\Set}$ which satisfy the sheaf
+condition for the canonical topology. This generalizes to $\infty$-logoi in a
+straightforward way, where the sheaf condition is strengthened to consider not
+just a couple levels of overlap, but infinitely many.
+
 
 \nocite{lurie:2009,hottbook}
 \printbibliography
