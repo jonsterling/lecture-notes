@@ -1,0 +1,76 @@
+\documentclass{jon-notes}
+
+\NewDocumentCommand\Set{}{\mathbf{Set}}
+\NewDocumentCommand\Psh{m}{\mathbf{P}(#1)}
+
+\DeclareFontFamily{U}{min}{}
+\DeclareFontShape{U}{min}{m}{n}{<-> dmjhira}{}
+\NewDocumentCommand{\hirayo}{}{\text{\usefont{U}{min}{m}{n}\symbol{'110}}}
+\NewDocumentCommand\Yo{s g}{%
+  \mkern-4mu\hirayo%
+  \IfValueT{#2}{%
+    \IfBooleanTF{#1}{
+      \parens{#2}
+    }{#2}
+  }%
+}
+
+
+\addbibresource{references/refs.bib}
+
+\title{The equivariant uniform Kan fibration model of cubical homotopy type theory (E.~Riehl)}
+\author{Notes by Jon Sterling}
+\date{August 12, 2019}
+
+
+\begin{document}
+\maketitle
+
+\NewDocumentCommand\Cube{}{\square}
+\NewDocumentCommand\cSet{}{\Psh{\Cube}}
+\NewDocumentCommand\II{}{\mathbb{I}}
+
+\para Joint work with Awodey, Caallo, Coquand, Sattler
+
+\para We want a $\cSet$-based model of HoTT which is a Quillen model category
+equivalent to spaces (Kan complexes in simplicial sets). We may further ask
+that this equivalence be a \emph{nice} functor (for instance, a triangulation),
+and that $\Cube$ supports inductive constructions (in the sense of being an
+Eilenberg-Zilber category).
+
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Team & Cubes & Equivalent to spaces?\\
+    \midrule
+    BCH & symmetric monoidal cubes & No: consider $\II^2/\mathsf{swap}$ (Buchholtz)
+    \\
+    ABCFHL, A & Cartesian cubes & No: analogous argument by Sattler
+    \\
+    CCHM & De Morgan cubes & No: consider $\II/\mathsf{rev}$ (Buchholtz)
+    \\
+    CCHM & Dedekind & open problem
+    \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+\medskip
+
+\para We will work with Cartesian cubes, but change the notion of fibration to
+rule out the counterexample. We need $\Mor{*}{\II^2/\mathsf{swap}}$ to be a
+trivial cofibration. The idea is to add an equivariance condition $j(x,y)\sigma =
+j(x,y\sigma)$ relative to symmetries $\sigma$:
+\[
+  \begin{tikzcd}[sep = huge]
+    * \arrow[r] \arrow[d] & * \arrow[r] \arrow[d] & * \arrow[r,"x"] \arrow[d] & X\arrow[d] \\
+    \II^2 \arrow[r,swap,"\sigma"] \arrow[urrr,sloped,"{j(x,y\sigma)}"] & \II^2\arrow[r,->>,swap,"e"]\arrow[urr,swap,sloped,"{j(x,y)}"] & \II^2/\mathsf{swap}\arrow[r,swap,"y"] \arrow[r] & Y
+  \end{tikzcd}
+\]
+
+We get the desired lift using the universal property of the quotient map $e$.
+
+
+
+\printbibliography
+
+\end{document}

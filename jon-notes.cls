@@ -15,6 +15,7 @@
 \RequirePackage{jon-tikz}
 \RequirePackage{jon-biblatex}
 \RequirePackage{cleveref}
+\RequirePackage{booktabs}
 
 
 \counterwithout{section}{chapter}
