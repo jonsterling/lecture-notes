@@ -3,6 +3,7 @@
 \usetikzlibrary{matrix,arrows}
 \usetikzlibrary{fit,positioning,calc}
 \RequirePackage{tikz-cd}
+\RequirePackage{jmsdelim}
 
 \tikzset{
   desc/.style={sloped, fill=white,inner sep=2pt},
@@ -14,32 +15,47 @@
       }
     }
   },
-  inline/.style = {
-    baseline=-\the\dimexpr\fontdimen22\textfont2\relax
-  },
   between/.style args={#1 and #2}{
     at = ($(#1)!0.5!(#2)$)
+  },
+  diagram/.style = {
+    on grid,
+    node distance=2cm,
+    commutative diagrams/every diagram,
+    every node/.append style = {
+      commutative diagrams/every cell,
+    }
   }
 }
 
-\tikzstyle{inline text}=[text height=1.5ex, text depth=0.25ex, yshift=0.5mm]
-
 \newlength{\dontworryaboutit}
+
+\tikzset{
+  inline diagram/.style = {
+    commutative diagrams/every diagram,
+    every node/.append style = {
+      commutative diagrams/every cell,
+      anchor = base,
+      inner sep = 0pt
+    }
+  }
+}
 
 % Draw a morphism inline, with dynamically sized arrow
 \NewDocumentCommand\Mor{D||{->} o m m}{%
-  \tikz[commutative diagrams/every diagram, commutative diagrams/cramped, baseline]{%
+  \tikz[inline diagram, baseline = (Y.base)]{%
+    \mindelim{1}
     \IfValueTF{#2}{%
-      \settowidth{\dontworryaboutit}{\ensuremath{\scriptstyle #2}}
+      \settowidth{\dontworryaboutit}{$\scriptstyle #2$}
       \pgfmathsetmacro\len{max(width("$xxx$"),7pt+\dontworryaboutit)}
 
-      \node (X) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] {\ensuremath{#3}\hspace*{.5ex}};
-      \node (Y) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] [right = \len pt of X] {\hspace*{.5ex}\ensuremath{#4}};
-      \path[#1] (X.east |- 1:3) edge node [above,xshift=-.5pt,yshift=-.1ex] {\smash{\ensuremath{\scriptstyle #2}}} (Y.west |- 1:3);
+      \node (X) {$#3$\hspace*{.5ex}};
+      \node (Y) [right = \len pt of X] {\hspace*{.5ex}$#4$};
+      \path[#1] (X.east |- 1:5) edge node [above,xshift=-.5pt,yshift=.3ex] {$\scriptstyle #2$} (Y.west |- 1:5);
     }{%
-      \node (X) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] {\ensuremath{#3}\hspace*{.5ex}};
-      \node (Y) [commutative diagrams/every cell, anchor = base, inner sep = 0pt] [right = 3ex of X] {\hspace*{.5ex}\ensuremath{#4}};
-      \path[#1] (X) edge node {} (Y);
+      \node (X) {$#3$\hspace*{.5ex}};
+      \node (Y) [right = 3ex of X] {\hspace*{.5ex}$#4$};
+      \path[#1] (X) edge (Y);
     }%
   }%
 }

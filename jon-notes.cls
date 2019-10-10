@@ -6,10 +6,11 @@
 \RequirePackage{amsmath,amsthm,amssymb}
 \RequirePackage{xparse}
 \RequirePackage[activate={true,nocompatibility}]{microtype}
-\RequirePackage{fouriernc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[cal=boondoxo]{mathalfa}
-\RequirePackage{inconsolata}
+\RequirePackage{libertine}
+\RequirePackage[libertine]{newtxmath}
+\RequirePackage{zi4}
 
 \RequirePackage{jon-thm}
 \RequirePackage{jon-tikz}
